@@ -1,9 +1,5 @@
-import electron = require('electron');
-import path = require('path');
-import fs = require('fs');
 
-openDevTools();
-
+// put it here so i can preview in chrome
 $(document).ready(function () {
     $('.ui.checkbox')
 		.checkbox({
@@ -12,15 +8,38 @@ $(document).ready(function () {
 				// console.log('checked');
 				// console.log($(this).siblings('label').first().text());
 				console.log($(this).data('name'));
-				
+
 				// $(this)获得的是 input 对象，所以要到 parent 才能调用 is checked 来判断
 				console.log($(this).parent().checkbox('is checked'));
 				// console.log(   $(this).siblings('label')[0].html()   );
 			}
 		})
 		;
+
+	// $('.ui.dropdown').dropdown('set selected', 0);
+	// $('.ui.dropdown').dropdown('refresh');
+	$('#inheritType').dropdown('set text', 'extends');
+	$('#inheritType').dropdown({
+		onChange: function (value, text, $selectedItem) {
+			console.log(value);
+			console.log(text);
+			console.log($selectedItem);
+		}
+	});
+
 });
 
+
+// import electron = require('electron');
+// import path = require('path');
+// import fs = require('fs');
+
+// import * as electron from 'electron';
+// import * as path from 'path';
+import * as fs from 'fs';	// use require() in compiled file. error in browser.
+
+
+openDevTools();
 
 
 function newTsClass() {

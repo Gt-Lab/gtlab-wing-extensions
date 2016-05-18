@@ -1,7 +1,19 @@
 #gt-ts-form {
-  padding-top: 40px; }
+  margin: 0px;
+  padding-top: 20px; }
   #gt-ts-form .row {
     padding-top: 0; }
+
+.gt-field {
+  display: flex !important;
+  align-items: center;
+  width: 100% !important; }
+  .gt-field .gt-label {
+    margin: 0 12px 0 0 !important;
+    width: 100px !important;
+    text-align: right !important; }
+  .gt-field .gt-input {
+    flex: 1 !important; }
 
 .monaco-shell.vs-dark label {
   color: #bbb !important; }

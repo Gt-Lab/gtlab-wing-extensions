@@ -3,32 +3,10 @@
 <head>
 	<script src="./lib/jquery/jquery.min.js"></script>
 
-	<!--<style>
-		.monaca-shell {
-			margin: 8px;
-		}
-		
-		.center {
-			display: flex;
-			flex-flow: column;
-			align-items: center;
-			justify-content: center;
-			width: 100%;
-			height: 100%;
-		}
-		
-		.center div {
-			text-align: center;
-		}
-	</style>-->
-
-
-
-
 	<!-- 测试用，使用浏览器调试时，用来模拟 wing webview 的环境 -->
-	<!--<link rel="stylesheet" type="text/css" href="./lib/wing/webview.css">-->
+	<link rel="stylesheet" type="text/css" href="./lib/wing/webview.css">
 
-	<link rel="stylesheet" type="text/css" href="./lib/semantic/semantic.css">
+	<link rel="stylesheet" type="text/css" href="./lib/semantic/semantic.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 
 	<script src="./lib/jquery/jquery.min.js"></script>
@@ -42,13 +20,15 @@
 </head>
 
 <!-- 测试用，使用浏览器调试时，用来模拟 wing webview 的环境 -->
-<!--<body class="monaco-shell vs-dark">-->
 
-<body>
+<body class="monaco-shell vs-dark">
+
+	<!--<body>-->
 
 	<div class="ui container">
 
 		<div class="ui middle aligned grid form" id="gt-ts-form">
+			<!-- File Type -->
 			<div class="row">
 				<div class="four wide column right aligned">
 					<div class="field">
@@ -73,6 +53,7 @@
 				</div>
 			</div>
 
+			<!-- Name -->
 			<div class="row">
 				<div class="four wide column right aligned">
 					<div class="field">
@@ -86,82 +67,93 @@
 				</div>
 			</div>
 
+			<!-- Parent Name -->
 			<div class="row">
 				<div class="four wide column right aligned">
 					<div class="field">
-						<label>Parent Class:</label>
+						<label>Inherit Info:</label>
 					</div>
 				</div>
+
 				<div class="twelve wide column">
-					<div class="ui fluid input">
-						<input id="parentClassName" type="text">
-					</div>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="four wide column right aligned">
-					<div class="field">
-						<label>Module Name:</label>
-					</div>
-				</div>
-				<div class="twelve wide column">
-					<div class="ui fluid input">
-						<input id="moduleName" type="text">
-					</div>
-				</div>
-			</div>
+					<div class="ui grid">
+						<div class="six wide column">
 
-			<div class="row">
-				<div class="four wide column right aligned">
-					<div class="field">
-						<label>Folder Path:</label>
-					</div>
-				</div>
-				<div class="twelve wide column">
-					<div class="ui fluid input">
-						<input id="folderPath" type="text">
+							<div id="inheritType" class="ui selection dropdown">
+								<input type="hidden" name="gender">
+								<i class="dropdown icon"></i>
+								<div class="default text">Gender</div>
+								<div class="menu">
+									<div class="item" data-value="1">extends</div>
+									<div class="item" data-value="0">implements</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="six wide column">
+							<div class="ui fluid input">
+								<input id="newClassName" type="text">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<!-- checkbox -->
-			<div class="row">
-				<div class="four wide column"></div>
-				<div class="twelve wide column">
-					<div class="ui checkbox">
-						<input type="checkbox" name="example">
-						<label>Static Class</label>
-					</div>
+		<!-- Folder Path -->
+		<div class="row">
+			<div class="four wide column right aligned">
+				<div class="field">
+					<label>Folder Path:</label>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="four wide column"></div>
-				<div class="twelve wide column">
-					<div class="ui checkbox">
-						<input type="checkbox" name="example">
-						<label>Export Class</label>
-					</div>
+			<div class="twelve wide column">
+				<div class="ui fluid input">
+					<input id="folderPath" type="text">
 				</div>
 			</div>
-
-
-			<!-- button -->
-			<div class="row">
-				<div class="four wide column">
-				</div>
-				<div class="eight wide column">
-					<button class="fluid ui blue button" onclick="newTsClass();">Create</button>
-				</div>
-				<div class="four wide column">
-				</div>
-			</div>
-
-
-
 		</div>
-		<!--form end-->
+
+		<!-- Checkbox Export Default -->
+		<div class="row">
+			<div class="four wide column"></div>
+			<div class="twelve wide column">
+
+				<div class="inline fields">
+					<div class="field">
+						<div class="ui checkbox">
+							<input type="checkbox" name="example">
+							<label>Export</label>
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui checkbox">
+							<input type="checkbox" name="example">
+							<label>Export</label>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+		<!-- Create -->
+		<div class="row">
+			<div class="four wide column">
+			</div>
+			<div class="eight wide column">
+				<button class="fluid ui blue button" onclick="newTsClass();">Create</button>
+			</div>
+			<div class="four wide column">
+			</div>
+		</div>
+
+
+
+	</div>
+	<!--form end-->
 
 	</div>
 	<!--container end-->

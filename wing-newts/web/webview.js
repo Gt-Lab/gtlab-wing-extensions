@@ -1,7 +1,5 @@
 "use strict";
-var path = require('path');
-var fs = require('fs');
-openDevTools();
+// put it here so i can preview in chrome
 $(document).ready(function () {
     $('.ui.checkbox')
         .checkbox({
@@ -15,7 +13,24 @@ $(document).ready(function () {
             // console.log(   $(this).siblings('label')[0].html()   );
         }
     });
+    // $('.ui.dropdown').dropdown('set selected', 0);
+    // $('.ui.dropdown').dropdown('refresh');
+    $('#inheritType').dropdown('set text', 'extends');
+    $('#inheritType').dropdown({
+        onChange: function (value, text, $selectedItem) {
+            console.log(value);
+            console.log(text);
+            console.log($selectedItem);
+        }
+    });
 });
+// import electron = require('electron');
+// import path = require('path');
+// import fs = require('fs');
+// import * as electron from 'electron';
+// import * as path from 'path';
+var fs = require('fs'); // use require() in compiled file. error in browser.
+openDevTools();
 function newTsClass() {
     wing.webview.ipc.sendToExtensionHost('getWorkspace');
 }
