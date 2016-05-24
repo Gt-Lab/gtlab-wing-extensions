@@ -1,7 +1,7 @@
-#gt-ts-form {
+#gt-form {
   margin: 0px;
-  padding-top: 20px; }
-  #gt-ts-form .row {
+  padding: 20px 40px; }
+  #gt-form .row {
     padding-top: 0; }
 
 .gt-field {
@@ -10,10 +10,13 @@
   width: 100% !important; }
   .gt-field .gt-label {
     margin: 0 12px 0 0 !important;
-    width: 100px !important;
+    width: 100px !important; }
+  .gt-field label.gt-label {
     text-align: right !important; }
   .gt-field .gt-input {
     flex: 1 !important; }
+  .gt-field .ui.selection.dropdown {
+    min-width: 126px !important; }
 
 .monaco-shell.vs-dark label {
   color: #bbb !important; }

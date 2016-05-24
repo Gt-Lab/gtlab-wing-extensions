@@ -1,7 +1,7 @@
 
-#gt-ts-form {
+#gt-form {
     margin: 0px;
-    padding-top: 20px;
+    padding: 20px 40px;
     
     .row {
         padding-top: 0;
@@ -14,14 +14,22 @@
     align-items: center;
     width: 100%!important;
     
-    .gt-label{
+    .gt-label {
         margin: 0 12px 0 0 !important;
         width: 100px !important;
+    }
+    
+    label.gt-label {
         text-align: right !important;
     }
     
     .gt-input {
         flex: 1 !important;
+        
+    }
+    
+    .ui.selection.dropdown {
+        min-width: 126px !important;
     }
 }
 
