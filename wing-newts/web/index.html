@@ -82,7 +82,7 @@
             </div>
 
 
-            <!-- Export Default -->            
+            <!-- Export Default -->
             <div class="field gt-field">
                 <label class="gt-label"></label>
                 <div class="inline fields gt-input">
@@ -94,13 +94,13 @@
                     </div>
                     <div class="field">
                         <div class="ui checkbox" id="moduleType_default">
-                            <input type="checkbox"  disabled="disabled" name="moduleType" data-value="default">
+                            <input type="checkbox" disabled="disabled" name="moduleType" data-value="default">
                             <label>Default</label>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Create -->
             <div class="gt-field">
                 <div class="gt-label"></div>
@@ -111,8 +111,30 @@
                 <div class="gt-label"></div>
             </div>
 
+            <div class="gt-field">
+                <div class="gt-label"></div>
+                <div class="gt-input">
+                    <button class="fluid ui blue button" onclick="test();">Test</button>
+                    <div class="ui error message"></div>
+                </div>
+                <div class="gt-label"></div>
+            </div>
+
         </div>
         <!--form end-->
+
+
+        <div id="gt-replace-modal" class="ui small modal">
+            <div class="header">Replace File</div>
+            <div class="content">
+                <p>File alread exists. Do you want to replace?</p>
+            </div>
+            <div class="actions">
+                <div class="ui approve button">Replace</div>
+                <!--<div class="ui button">Neutral</div>-->
+                <div class="ui cancel button">Cancel</div>
+            </div>
+        </div>
 
     </div>
     <!--container end-->

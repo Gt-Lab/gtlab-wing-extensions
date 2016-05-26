@@ -45,13 +45,19 @@ function webviewAdded(webview: wing.WebView) {
 			// 而且文档必须处于当前打开的工程中才能打开
 			// 并且只是预览状态，不在 working files 中
 			wing.workspace.openTextDocument(fileName).then(doc => {
+				console.log('ext - openTextDocument');
 				console.log(doc);
 				wing.window.showTextDocument(doc, wing.ViewColumn.One);
+				// 直接发送消息
+				// 如果当前已经打开了要替换的文档，onDidOpenTextDocument不会触发，窗口就没法关闭
+				webview.send('openTextDocumentSuccess');
 			});;
 
-			wing.workspace.onDidOpenTextDocument((event) => {
-				webview.send('openTextDocumentSuccess');
-			});
+			
+			// wing.workspace.onDidOpenTextDocument((event) => {
+			// 	console.log('ext - onDidOpenTextDocument');
+			// 	webview.send('openTextDocumentSuccess');
+			// });
 		}
 	});
 }
