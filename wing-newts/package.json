@@ -1,7 +1,7 @@
 {
   "name": "wing-newts",
-  "displayName": "New TypeScript Class",
-  "description": "New TypeScript Class",
+  "displayName": "New TypeScript File",
+  "description": "New TypeScript File",
   "version": "1.0.0",
   "publisher": "gtlab",
   "engines": {

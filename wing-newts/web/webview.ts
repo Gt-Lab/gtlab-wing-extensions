@@ -1,4 +1,10 @@
 
+import fs = require('fs');
+import path = require('path');
+import os = require('os');
+// import process = require('process'); // process is global, no need to import
+
+
 // global variables, store all information
 let fileInfo = {
 	fileType: 'class',
@@ -10,14 +16,30 @@ let fileInfo = {
 		export: false,
 		default: false
 	},
+	extraInfo: {
+		import: true,
+		comment: true
+	},
 	rootPath: '',
 	fullPath: '',
 	fullName: ''
 };
 
+let osInfo = {
+	platform: 'darwin',
+	slash: '/'
+}
+
 
 // jQuery ready. put it here so i can preview in chrome
 $(document).ready(function () {
+	osInfo.platform = process.platform;
+	osInfo.slash = (osInfo.platform == 'win32')?'\\':'/';
+
+	$('#projectPathLabel').html(`{Project Path}${osInfo.slash}`);
+	$('#fileNamePreviewLabel').html(`${osInfo.slash}{YourFile}.ts`);
+	
+	// class/interface, export, default
     $('.ui.checkbox').checkbox({
 		onChange: function () {
 			// console.log($(this).data('value'));
@@ -26,13 +48,18 @@ $(document).ready(function () {
 			// $(this)获得的是 input 对象，所以要到 parent 才能调用 is checked 来判断
 			// console.log(   $(this).siblings('label')[0].html()   );
 
-			if ($(this).attr('name') == 'fileType') {
-				fileInfo.fileType = $(this).data('value');
+			let name = $(this).data('name');
+			let type = $(this).attr('type');
+			let value = $(this).data('value');
+			
+			// class/interface
+			if (type == 'radio') {
+				fileInfo[name] = value;
 			}
 
-			if ($(this).attr('name') == 'moduleType') {
-				let t = $(this).data('value');
-				fileInfo.moduleType[t] = $(this).parent().checkbox('is checked');
+			// export, default
+			if (type == 'checkbox') {
+				fileInfo[name][value] = $(this).parent().checkbox('is checked');
 
 				// 只有当有 export 的时候，default 才有效
 				if (fileInfo.moduleType.export) {
@@ -43,7 +70,8 @@ $(document).ready(function () {
 					$('#moduleType_default').checkbox('set disabled');
 				}
 			}
-			// printInfo();
+
+			printInfo();
 		}
 	});
 
@@ -51,15 +79,16 @@ $(document).ready(function () {
 	// <input class="gt-input" name="fileName" data-value="fileName" type="text" ...> --- will trigger this
 	// <input type="radio" ...>		--- not trigger
 	// <input type="checkbox" ...>	--- not trigger
+	// fileName, inheritName, filePath
 	$('input').on('input', function (e) {
 		console.log('input --- ');
-		let field = $(this).data('value');
+		let field = $(this).data('name');
 		let value = $(this).val();
 		fileInfo[field] = value;
 		
 		if (field == 'fileName') {
-			value = (value=='')?'YourFile':value;
-			$('#fileNamePreview').html(`/${value}.ts`);
+			value = (value=='')?'{YourFile}':value;
+			$('#fileNamePreviewLabel').html(`${osInfo.slash}${value}.ts`);
 		}
 		
 	});
@@ -71,6 +100,7 @@ $(document).ready(function () {
 	});
 
 	
+	// inheritType
 	$('#inheritType').dropdown('set text', 'extends');
 	$('#inheritType').dropdown({
 		onChange: function (value, text, $selectedItem) {
@@ -99,39 +129,30 @@ $(document).ready(function () {
 }); // ready
 
 
-// log info
-function printInfo() {
-	alert(JSON.stringify(fileInfo));
-}
-
-
-// import electron = require('electron');
-// import path = require('path');
-
-// import * as electron from 'electron';
-// import * as path from 'path';
-
-// import fs = require('fs');
-import * as fs from 'fs';	// use require() in compiled file. error in browser.
-import * as path from 'path';
-
-
-openDevTools();
+// wing.webview.ipc.sendToHost('openDevTools');
 
 
 // test 
-import MyClass from './MyClass'
+// import MyClass from './MyClass'
+// function test() {
+	// openDevTools();
+// 	// let myclass = new MyClass();
+// 	// myclass.print();
+	
+// 	alert(os.platform());
+// 	alert(process.platform);
+// }
 
-function test() {
-	// let myclass = new MyClass();
-	// myclass.print();
+
+// log info
+function printInfo() {
+	console.log(JSON.stringify(fileInfo));
 }
 
 
 // Create Button
 function createFile() {
-	console.log(fileInfo);
-
+	// console.log(fileInfo);
 	// first get wing.workspace
 	wing.webview.ipc.sendToExtensionHost('getWorkspace');
 }
@@ -139,7 +160,7 @@ function createFile() {
 
 // wing.workspace returned
 wing.webview.ipc.on('getWorkspaceSuccess', function (event, args) {
-	console.log('web - getWorkspaceSuccess');
+	// console.log('web - getWorkspaceSuccess');
 	// create file
 	doCreateFile(args);
 });
@@ -148,23 +169,26 @@ wing.webview.ipc.on('getWorkspaceSuccess', function (event, args) {
 // create file
 function doCreateFile(args: any) {
 	let fi = fileInfo;	// for short
+	let oi = osInfo;	// for short
 	fi.rootPath = args.rootPath; // wing.workspace.rootPath
 
-	// todo 如果文件名包含 .ts 要处理
-	// todo 如果路径是windows的斜杠，要处理
-	// 如果路径两边有斜杠，要去掉
-	// new string syntax
-	fi.fullPath = `${fi.rootPath}/${fi.filePath}`;
-	fi.fullName = `${fi.fullPath}/${fi.fileName}.ts`;
+	// todo 如果文件名包含 .ts 要处理 ---- 因为修改名称时会有提示，暂不处理
+	// todo 如果路径是windows的斜杠、路径两边有斜杠，要处理 ---- path.join() 可以自动处理
+
+	// fi.fullPath = `${fi.rootPath}${oi.slash}${fi.filePath}`;
+	// fi.fullName = `${fi.fullPath}${oi.slash}${fi.fileName}.ts`;
+	
+	// fullPath 文件夹绝对路径，fullName 文件绝对路径
+	fi.fullPath = path.join(fi.rootPath, fi.filePath);
+	fi.fullName = path.join(fi.fullPath, fi.fileName + '.ts');
+	
 	fileInfo = fi;	// save back
 	
-	printInfo();
-	
-	let data = fileContent(fi);	// file content
+	const data = fileContent(fi);	// file content
 
-	// todo: 1. 研究其他ts类，是什么样的
-	// todo: 2. 路径如果不存在，是否创建；文件如果重名，是否替换
-	// todo: 3. input 无法复制粘贴
+	// todo: 1. 研究其他ts类，是什么样的 ---- xx
+	// todo: 2. 路径如果不存在，是否创建；文件如果重名，是否替换 ---- 已经弹框
+	// todo: 3. input 无法复制粘贴 ---- 未找到解决方法
 
 	if (!fs.existsSync(fi.fullPath)) {
 		// if no such folder, create it
@@ -200,8 +224,7 @@ function fileContent(fi: any) {
 
 // 1. import ---
 let importStr = '';
-
-let importNote = '// *** may need some changes to make it work ***'
+let importNote = '// *** may need some changes to make "import" work ***'
 
 let importStrExport = 
 `import {${fi.inheritName}} from './${fi.inheritName}'`;
@@ -220,17 +243,26 @@ if (!fs.existsSync(inheritFileName)) {
 `;	
 } else {
 	let inheritFileContent = fs.readFileSync(inheritFileName, 'utf-8');
-	// 文件包含 export default，使用一种import
+
 	if (inheritFileContent.indexOf('export default') >= 0) {
+		// export defalut
 		importStr = 
 `${importNote}
 // ${importStrExport}
 ${importStrExportDefault}
 `;
-	} else {
+	} else if (inheritFileContent.indexOf('export') >= 0) {
+		// export
 		importStr = 
 `${importNote}
 ${importStrExport}
+// ${importStrExportDefault}
+`;
+	} else {
+		// no export
+		importStr = 
+`${importNote}
+// ${importStrExport}
 // ${importStrExportDefault}
 `;
 	}
@@ -255,6 +287,7 @@ let commentStr =
  * ${fi.fileName}
  * @author ${author}
  * @version 
+ * @date ${date.toISOString()}
  */
 `;
 
@@ -275,10 +308,11 @@ let constructorStr =
 	}`;
 
 // --- file content ---
-// export default interface MyInterface will lint error，no error when "default" removed. actually both work.
+// export default interface MyInterface will lint error，
+// no error when "default" removed. actually both work.
 let data =
-`${fi.inheritName != ''?importStr:''}
-${commentStr}
+`${(fi.extraInfo.import && fi.inheritName != '')?importStr:''}
+${fi.extraInfo.comment?commentStr:''}
 ${moduleType}${fi.fileType} ${fi.fileName} ${inheritInfo}{
 ${fi.fileType == 'class' ? constructorStr: ''}	
 }
@@ -314,30 +348,30 @@ wing.webview.ipc.on('openTextDocumentSuccess', function (event, args) {
 
 
 
-// -------- test ----------
-function showAlert() {
-	alert('Hello WebView');
-}
+// -------- template ----------
+// function showAlert() {
+// 	alert('Hello WebView');
+// }
 
-function nodeApiTest() {
-	var packagePath = path.join(__dirname, '../package.json');
-	alert(packagePath);
-}
+// function nodeApiTest() {
+// 	var packagePath = path.join(__dirname, '../package.json');
+// 	alert(packagePath);
+// }
 
-function openDevTools() {
-	wing.webview.ipc.sendToHost('openDevTools');
-}
+// function openDevTools() {
+// 	wing.webview.ipc.sendToHost('openDevTools');
+// }
 
-function sendToExtension() {
-	wing.webview.ipc.sendToExtensionHost('ping', '1', '2');
-}
+// function sendToExtension() {
+// 	wing.webview.ipc.sendToExtensionHost('ping', '1', '2');
+// }
 
-function closeWebView() {
-	wing.webview.ipc.close();
-}
+// function closeWebView() {
+// 	wing.webview.ipc.close();
+// }
 
-wing.webview.ipc.on('pong', function (event, args) {
-	console.log(event);
-	console.log(args);
-});
+// wing.webview.ipc.on('pong', function (event, args) {
+// 	console.log(event);
+// 	console.log(args);
+// });
 

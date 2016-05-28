@@ -34,16 +34,16 @@
             <!-- File Type -->
             <div class="field gt-field">
                 <label class="gt-label">Type:</label>
-                <div class="inline fields gt-input" style="margin-bottom: 0;">
+                <div class="inline fields gt-input gt-bottom-fix">
                     <div class="field">
                         <div class="ui radio checkbox">
-                            <input type="radio" name="fileType" checked="checked" data-value="class">
+                            <input type="radio" name="fileType" checked="checked" data-name="fileType" data-value="class">
                             <label>Class</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui radio checkbox">
-                            <input type="radio" name="fileType" data-value="interface">
+                            <input type="radio" name="fileType" data-name="fileType" data-value="interface">
                             <label>Interface</label>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
             <!-- Name -->
             <div class="field gt-field">
                 <label class="gt-label">Name:</label>
-                <input class="gt-input" name="fileName" data-value="fileName" type="text" placeholder="Class or Interface Name">
+                <input class="gt-input" name="fileName" data-name="fileName" type="text" placeholder="Class or Interface Name">
             </div>
 
 
@@ -71,7 +71,7 @@
                             <div class="item" data-value="1">implements</div>
                         </div>
                     </div>
-                    <input class="gt-input" data-value="inheritName" type="text" placeholder="Class or Interface Name">
+                    <input class="gt-input" data-name="inheritName" type="text" placeholder="Class or Interface Name">
                 </div>
             </div>
 
@@ -81,33 +81,56 @@
                 <label class="gt-label">Path:</label>
                 <!--<input class="gt-input" data-value="filePath" type="text" placeholder="File Path">-->
                 <div class="ui right labeled input gt-input">
-                    <div class="ui label">
-                        {Project Path}/
+                    <div id="projectPathLabel" class="ui label">
+                        <!--{Project Path}/-->
                     </div>
-                    <input data-value="filePath" type="text" placeholder="File Path" class="gt-labeled-input-fix">
-                    <div id="fileNamePreview" class="ui label">/YourFile.ts</div>
+                    <input data-name="filePath" type="text" placeholder="File Path" class="gt-labeled-input-fix">
+                    <div id="fileNamePreviewLabel" class="ui label">
+                        <!--/YourFile.ts-->
+                    </div>
                 </div>
             </div>
 
 
             <!-- Export Default -->
             <div class="field gt-field">
-                <label class="gt-label"></label>
-                <div class="inline fields gt-input">
+                <label class="gt-label">Module Type</label>
+                <div class="inline fields gt-input gt-bottom-fix">
                     <div class="field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="moduleType" data-value="export">
+                            <input type="checkbox" name="moduleType" data-name="moduleType" data-value="export">
                             <label>Export</label>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui checkbox" id="moduleType_default">
-                            <input type="checkbox" disabled="disabled" name="moduleType" data-value="default">
+                            <input type="checkbox" disabled="disabled" name="moduleType" data-name="moduleType" data-value="default">
                             <label>Default</label>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            
+            <!-- Add import, comment -->
+            <div class="field gt-field">
+                <label class="gt-label">Extra Info</label>
+                <div class="inline fields gt-input gt-bottom-fix">
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="extraInfo" data-name="extraInfo" data-value="import" checked="">
+                            <label>Add "import"</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="extraInfo" data-name="extraInfo" data-value="comment" checked="">
+                            <label>Add comments</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Create -->
             <div class="field gt-field">
@@ -119,14 +142,14 @@
                 <div class="gt-label"></div>
             </div>
 
-            <div class="field gt-field">
+            <!--<div class="field gt-field">
                 <div class="gt-label"></div>
                 <div class="gt-input">
                     <button class="fluid ui blue button" onclick="test();">Test</button>
                     <div class="ui error message"></div>
                 </div>
                 <div class="gt-label"></div>
-            </div>
+            </div>-->
 
         </div>
         <!--form end-->
@@ -138,9 +161,8 @@
                 <p>File alread exists. Do you want to replace?</p>
             </div>
             <div class="actions">
-                <div class="ui approve button">Replace</div>
-                <!--<div class="ui button">Neutral</div>-->
                 <div class="ui cancel button">Cancel</div>
+                <div class="ui approve primary button">Replace</div>
             </div>
         </div>
 
