@@ -1,5 +1,5 @@
 
-
+// global variables, store all information
 let fileInfo = {
 	fileType: 'class',
 	fileName: '',
@@ -10,10 +10,13 @@ let fileInfo = {
 		export: false,
 		default: false
 	},
-	rootPath: ''
+	rootPath: '',
+	fullPath: '',
+	fullName: ''
 };
 
-// put it here so i can preview in chrome
+
+// jQuery ready. put it here so i can preview in chrome
 $(document).ready(function () {
     $('.ui.checkbox').checkbox({
 		onChange: function () {
@@ -45,29 +48,39 @@ $(document).ready(function () {
 	});
 
 
+	// <input class="gt-input" name="fileName" data-value="fileName" type="text" ...> --- will trigger this
+	// <input type="radio" ...>		--- not trigger
+	// <input type="checkbox" ...>	--- not trigger
 	$('input').on('input', function (e) {
+		console.log('input --- ');
 		let field = $(this).data('value');
 		let value = $(this).val();
 		fileInfo[field] = value;
+		
+		if (field == 'fileName') {
+			value = (value=='')?'YourFile':value;
+			$('#fileNamePreview').html(`/${value}.ts`);
+		}
+		
 	});
 
-	// change 事件只有失去焦点才会触发
+
+	// change event handler only called when input blured
 	$('input').on('change', function (e) {
 		// printInfo();
 	});
 
-
+	
 	$('#inheritType').dropdown('set text', 'extends');
 	$('#inheritType').dropdown({
 		onChange: function (value, text, $selectedItem) {
-			// console.log(value);
-			// console.log(text);
-			// console.log($selectedItem);
 			fileInfo['inheritType'] = text;
 			printInfo()
 		}
 	});
 
+
+	// form validation
 	$('#gt-form')
 		.form({
 			fields: {
@@ -83,14 +96,14 @@ $(document).ready(function () {
 			}
 		})
 		;
+}); // ready
 
-	
 
-});
-
+// log info
 function printInfo() {
-	console.log(JSON.stringify(fileInfo));
+	alert(JSON.stringify(fileInfo));
 }
+
 
 // import electron = require('electron');
 // import path = require('path');
@@ -102,170 +115,195 @@ function printInfo() {
 import * as fs from 'fs';	// use require() in compiled file. error in browser.
 import * as path from 'path';
 
-import MyClass from './MyClass'
 
 openDevTools();
 
 
-// 按钮点击事件
+// test 
+import MyClass from './MyClass'
+
 function test() {
-	let myclass = new MyClass();
-	myclass.print();
+	// let myclass = new MyClass();
+	// myclass.print();
 }
 
 
-// 按钮点击事件
+// Create Button
 function createFile() {
 	console.log(fileInfo);
 
-	// 首先请求 wing workspace 信息
+	// first get wing.workspace
 	wing.webview.ipc.sendToExtensionHost('getWorkspace');
 }
 
 
-// wing 返回 workspace 数据
+// wing.workspace returned
 wing.webview.ipc.on('getWorkspaceSuccess', function (event, args) {
 	console.log('web - getWorkspaceSuccess');
-	// 获取 workspace 成功，开始正式创建文件
+	// create file
 	doCreateFile(args);
 });
 
 
-// 实际的操作
+// create file
 function doCreateFile(args: any) {
-	// wing.workspace.rootPath
-	let fi = fileInfo;
-	fi.rootPath = args.rootPath;
+	let fi = fileInfo;	// for short
+	fi.rootPath = args.rootPath; // wing.workspace.rootPath
 
-
-	// 用新的字符串语法
-	let path = `${fi.rootPath}/${fi.filePath}`;
-	let filename = `${path}/${fi.fileName}.ts`;
-
-// 如果继承了其他class或者interface，可能要导入相应的类型
-// todo 查找父类文件，通过里面是 export 还是 export default 来决定用哪种import方式
-
+	// todo 如果文件名包含 .ts 要处理
+	// todo 如果路径是windows的斜杠，要处理
+	// 如果路径两边有斜杠，要去掉
+	// new string syntax
+	fi.fullPath = `${fi.rootPath}/${fi.filePath}`;
+	fi.fullName = `${fi.fullPath}/${fi.fileName}.ts`;
+	fileInfo = fi;	// save back
 	
+	printInfo();
+	
+	let data = fileContent(fi);	// file content
+
+	// todo: 1. 研究其他ts类，是什么样的
+	// todo: 2. 路径如果不存在，是否创建；文件如果重名，是否替换
+	// todo: 3. input 无法复制粘贴
+
+	if (!fs.existsSync(fi.fullPath)) {
+		// if no such folder, create it
+		fs.mkdirSync(fi.fullPath);
+	}
+	
+	if (fs.existsSync(fi.fullName)) {
+		// replace file with the same name?
+		$('#gt-replace-modal')
+		.modal({
+			closable  : false,
+			onDeny    : function(){
+				console.log('do not replace file');
+				// return false;	// if return false, the modal will not close
+			},
+			onApprove : function() {
+				console.log('replace file');
+				writeFile(fi.fullName, data);
+			}
+		})
+		.modal('show')
+		;
+	} else {
+		writeFile(fi.fullName, data);
+	}
+} // doCreateFile
+
+
+function fileContent(fi: any) {
+// indents are strange in this function 
+// `` multiline string will use the indent of each line
+
+
+// 1. import ---
 let importStr = '';
-	
+
+let importNote = '// *** may need some changes to make it work ***'
+
 let importStrExport = 
 `import {${fi.inheritName}} from './${fi.inheritName}'`;
 
 let importStrExportDefault = 
 `import ${fi.inheritName} from './${fi.inheritName}'`;
 
-let inheritFileName = `${path}/${fi.inheritName}.ts`;
+let inheritFileName = `${fi.fullPath}/${fi.inheritName}.ts`;
 	
 if (!fs.existsSync(inheritFileName)) {
-	console.log('');
 	// 如果文件不存在，默认提供注释的形式
 	importStr = 
-`// *** uncomment to import ***
+`${importNote}
 // ${importStrExport}
 // ${importStrExportDefault}
 `;	
 } else {
-	let content = fs.readFileSync(inheritFileName, 'utf-8');
-	// alert(content);
-	if (content.indexOf('export default') >= 0) {
+	let inheritFileContent = fs.readFileSync(inheritFileName, 'utf-8');
+	// 文件包含 export default，使用一种import
+	if (inheritFileContent.indexOf('export default') >= 0) {
 		importStr = 
-`// *** you may need another import ***
+`${importNote}
 // ${importStrExport}
 ${importStrExportDefault}
 `;
 	} else {
 		importStr = 
-`// *** you may need another import ***
+`${importNote}
 ${importStrExport}
 // ${importStrExportDefault}
 `;
 	}
 }
-	
-let commentStr = 
-`
-/**
- * ClassName: type_name
- * @Description: todo
- * @author yokoboy
- * @date date
- */
-`
 
+
+// 2. comment ---
+let author = '';
+let packageJsonPath = `${fi.rootPath}/package.json`;
+
+if (fs.existsSync(packageJsonPath)) {
+	let packageJsonContent = fs.readFileSync(packageJsonPath, 'utf-8');
+	let packageJsonObj = JSON.parse(packageJsonContent);
+
+	author = packageJsonObj.hasOwnProperty('publisher')?packageJsonObj.publisher:'';
+}
+
+let date = new Date();
+
+let commentStr = 
+`/**
+ * ${fi.fileName}
+ * @author ${author}
+ * @version 
+ */
+`;
+
+
+// 3. export default ---
 let moduleType = 
 `${fi.moduleType.export?'export ':''}${fi.moduleType.default?'default ':''}`;
 
 let inheritInfo = 
 `${fi.inheritName == ''?'':fi.inheritType + ' '}${fi.inheritName}`;
 
-// 如果继承了类，constructor中一定要调用super
+
+// 4. constructor ---
+// if extends，constructor() must call super()
 let constructorStr = 
 `	constructor() {
 		${(fi.inheritType == 'extends' && fi.inheritName != '')?'super();':''}
 	}`;
 
-// 文件内容
-// export default interface MyInterface 会报错，去掉 default 就不会。但是两个都能运行
+// --- file content ---
+// export default interface MyInterface will lint error，no error when "default" removed. actually both work.
 let data =
-`
-${fi.inheritName != ''?importStr:''}
+`${fi.inheritName != ''?importStr:''}
 ${commentStr}
 ${moduleType}${fi.fileType} ${fi.fileName} ${inheritInfo}{
 ${fi.fileType == 'class' ? constructorStr: ''}	
 }
 `;
 
-	
-	// todo: 1. 研究其他ts类，是什么样的
-	// todo: 2. 路径如果不存在，是否创建；文件如果重名，是否替换
-	// todo: 3. input 无法复制粘贴
-
-	if (!fs.existsSync(path)) {
-		//文件夹不存在则创建一个
-		fs.mkdirSync(path);
-	}
-	
-	if (fs.existsSync(filename)) {
-		// 如果文件存在，弹框询问是否覆盖
-		$('#gt-replace-modal')
-		.modal({
-			closable  : false,
-			onDeny    : function(){
-				console.log('do not replace file');
-				// return false;
-			},
-			onApprove : function() {
-				console.log('replace file');
-				writeFile(filename, data);
-			}
-		})
-		.modal('show')
-		;
-	} else {
-		writeFile(filename, data);
-	}
+return data;
+} // fileContent
 
 
-}
-
+// write file to project
 function writeFile(filename:string, data:string) {
 	console.log('web - writeFile');
 	fs.writeFile(filename, data, 'utf-8', (err) => {
-
 		if (!err) {
 			console.log('writeFile success');
 			wing.webview.ipc.sendToExtensionHost('openTextDocument', filename);
 		} else {
 			console.log(err);
 			alert(err.message);
-			// alert(JSON.stringify(err));
 		}
-
-		// if (err) throw err;
-		// wing.webview.ipc.close();
 	});
 }
 
+
+// if created file opened successfully, close the webview
 wing.webview.ipc.on('openTextDocumentSuccess', function (event, args) {
 	console.log('web - openTextDocumentSuccess');
 	wing.webview.ipc.close();
@@ -273,6 +311,10 @@ wing.webview.ipc.on('openTextDocumentSuccess', function (event, args) {
 
 
 
+
+
+
+// -------- test ----------
 function showAlert() {
 	alert('Hello WebView');
 }
@@ -297,8 +339,5 @@ function closeWebView() {
 wing.webview.ipc.on('pong', function (event, args) {
 	console.log(event);
 	console.log(args);
-	// rootPath = args;
-
-	// alert('Message From Extension: pong');
 });
 

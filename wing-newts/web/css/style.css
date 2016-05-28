@@ -17,6 +17,8 @@
     flex: 1 !important; }
   .gt-field .ui.selection.dropdown {
     min-width: 126px !important; }
+  .gt-field .gt-labeled-input-fix {
+    width: 0 !important; }
 
 .monaco-shell.vs-dark label {
   color: #bbb !important; }

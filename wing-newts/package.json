@@ -24,7 +24,7 @@
     "commands": [
       {
         "command": "extension.showNewTsClassPopup",
-        "title": "New TypeScript Class"
+        "title": "New TypeScript File"
       }
     ]
   },

@@ -86,8 +86,8 @@ function showWebViewPopup(html: wing.Uri) {
 	}, {
 			position: wing.PopupPosition.MIDDLE,
 			width: 600,
-			height: 300,
-			title: 'New TypeScript Class',
+			height: 400,
+			title: 'New TypeScript File',
 			movable: true,
 			closeButton: true,
 			modal: true

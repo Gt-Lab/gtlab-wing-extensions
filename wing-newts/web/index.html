@@ -6,7 +6,7 @@
     <!-- 测试用，使用浏览器调试时，用来模拟 wing webview 的环境 -->
     <link rel="stylesheet" type="text/css" href="./lib/wing/webview.css">
 
-    <link rel="stylesheet" type="text/css" href="./lib/semantic/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="./lib/semantic/semantic.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 
     <script src="./lib/jquery/jquery.min.js"></script>
@@ -22,6 +22,7 @@
 <!-- 测试用，使用浏览器调试时，用来模拟 wing webview 的环境 -->
 
 <body class="monaco-shell vs-dark">
+
 
     <!--<body>-->
 
@@ -78,7 +79,14 @@
             <!-- Folder Path -->
             <div class="field gt-field">
                 <label class="gt-label">Path:</label>
-                <input class="gt-input" data-value="filePath" type="text" placeholder="File Path">
+                <!--<input class="gt-input" data-value="filePath" type="text" placeholder="File Path">-->
+                <div class="ui right labeled input gt-input">
+                    <div class="ui label">
+                        {Project Path}/
+                    </div>
+                    <input data-value="filePath" type="text" placeholder="File Path" class="gt-labeled-input-fix">
+                    <div id="fileNamePreview" class="ui label">/YourFile.ts</div>
+                </div>
             </div>
 
 
@@ -102,7 +110,7 @@
             </div>
 
             <!-- Create -->
-            <div class="gt-field">
+            <div class="field gt-field">
                 <div class="gt-label"></div>
                 <div class="gt-input">
                     <button class="fluid ui blue submit button" onclick="createFile();">Create</button>
@@ -111,7 +119,7 @@
                 <div class="gt-label"></div>
             </div>
 
-            <div class="gt-field">
+            <div class="field gt-field">
                 <div class="gt-label"></div>
                 <div class="gt-input">
                     <button class="fluid ui blue button" onclick="test();">Test</button>

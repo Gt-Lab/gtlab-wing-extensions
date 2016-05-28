@@ -31,7 +31,12 @@
     .ui.selection.dropdown {
         min-width: 126px !important;
     }
+    
+    .gt-labeled-input-fix {
+        width: 0 !important; // dont know why
+    }
 }
+
 
 // change color on different themes
 .monaco-shell.vs-dark {
