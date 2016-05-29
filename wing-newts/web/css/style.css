@@ -25,4 +25,10 @@
 .monaco-shell.vs-dark label {
   color: #bbb !important; }
 
+.monaco-shell.hc-black label {
+  color: #fff !important; }
+
+.monaco-shell.wing-dark.vs-dark label {
+  color: #ccc !important; }
+
 /*# sourceMappingURL=style.css.map */

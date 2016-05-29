@@ -5,6 +5,7 @@ import os = require('os');
 // import process = require('process'); // process is global, no need to import
 
 
+
 // global variables, store all information
 let fileInfo = {
 	fileType: 'class',
@@ -311,8 +312,8 @@ let constructorStr =
 // export default interface MyInterface will lint error，
 // no error when "default" removed. actually both work.
 let data =
-`${(fi.extraInfo.import && fi.inheritName != '')?importStr:''}
-${fi.extraInfo.comment?commentStr:''}
+`${fi.extraInfo.import ? importStr: ''}
+${fi.extraInfo.comment ? commentStr: ''}
 ${moduleType}${fi.fileType} ${fi.fileName} ${inheritInfo}{
 ${fi.fileType == 'class' ? constructorStr: ''}	
 }

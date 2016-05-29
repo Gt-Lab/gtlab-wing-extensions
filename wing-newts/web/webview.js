@@ -222,7 +222,7 @@ function fileContent(fi) {
     // --- file content ---
     // export default interface MyInterface will lint error，
     // no error when "default" removed. actually both work.
-    var data = ((fi.extraInfo.import && fi.inheritName != '') ? importStr : '') + "\n" + (fi.extraInfo.comment ? commentStr : '') + "\n" + moduleType + fi.fileType + " " + fi.fileName + " " + inheritInfo + "{\n" + (fi.fileType == 'class' ? constructorStr : '') + "\t\n}\n";
+    var data = (fi.extraInfo.import ? importStr : '') + "\n" + (fi.extraInfo.comment ? commentStr : '') + "\n" + moduleType + fi.fileType + " " + fi.fileName + " " + inheritInfo + "{\n" + (fi.fileType == 'class' ? constructorStr : '') + "\t\n}\n";
     return data;
 } // fileContent
 // write file to project

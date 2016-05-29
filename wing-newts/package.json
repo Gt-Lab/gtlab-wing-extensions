@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "publisher": "gtlab",
   "engines": {
-    "wing": "^3.0.6"
+    "wing": "^3.0.7"
   },
   "categories": [
     "Other"
@@ -13,7 +13,7 @@
   "icon": "images/icon.svg",
   "repository": {
 		"type": "git",
-		"url": "https://github.com/gt-lab/wing-newts.git"
+		"url": "https://github.com/Gt-Lab/gtlab-wing-extensions"
 	},
   "license": "MIT",
   "activationEvents": [

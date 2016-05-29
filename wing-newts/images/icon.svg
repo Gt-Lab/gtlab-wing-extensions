@@ -1,20 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
-<g id="图层_2">
-</g>
-<g id="图层_3">
-</g>
-<g id="图层_1">
-	<g id="feather">
-	</g>
-	<g>
-		<g>
-			<rect fill="#3576F8" width="50" height="50"/>
-		</g>
-		<polygon fill="#FFFFFF" points="34,26 34,16 27,16 27,8 19,8 19,16 9,16 9,26 17,26 17,33 9,33 9,41 34,41 34,33 42,33 42,26 		
-			"/>
-	</g>
-</g>
+<svg width="100%" height="100%" viewBox="0 0 200 134" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g id="icon">
+        <rect id="Rectangle 1 copy" x="55" y="30" width="97" height="90" style="fill:rgb(111,173,213);"/>
+        <rect id="Rectangle 1" x="49" y="24" width="97" height="90" style="fill:rgb(0,121,203);"/>
+        <rect id="Rectangle 1 copy 2" x="55" y="30" width="84" height="77" style="fill:rgb(241,239,241);"/>
+        <text id="TS" x="70.3506px" y="100.71px" style="font-family:Menlo;font-size:56px;font-weight:700;fill:rgb(0,122,204);">TS</text>
+        <g id="badge">
+            <path id="Rounded Rectangle 1" d="M104,11L147,11C155.837,11 163,18.1634 163,27C163,35.8366 155.837,43 147,43L104,43C95.1634,43 88,35.8366 88,27C88,18.1634 95.1634,11 104,11Z" style="fill:rgb(255,119,119);"/>
+            <text id="new" x="100.352px" y="34.8496px" style="font-family:Helvetica Neue;font-size:28px;font-weight:300;fill:white;">new</text>
+        </g>
+    </g>
 </svg>

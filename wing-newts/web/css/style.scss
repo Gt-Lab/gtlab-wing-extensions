@@ -44,9 +44,19 @@
 
 // change color on different themes
 .monaco-shell.vs-dark {
-    // color: #bbb !important;
-    
     label {
         color: #bbb !important;
+    }
+}
+
+.monaco-shell.hc-black {
+    label {
+        color: #fff !important;
+    }
+}
+
+.monaco-shell.wing-dark.vs-dark {
+    label {
+        color: #ccc !important;
     }
 }
