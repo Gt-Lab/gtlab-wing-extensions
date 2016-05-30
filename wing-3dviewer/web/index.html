@@ -1,0 +1,100 @@
+<html>
+
+<head>
+	<style>
+		/*.monaca-shell {
+			margin: 8px;
+		}
+		
+		.center {
+			display: flex;
+			flex-flow: column;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+		}
+		
+		.center div {
+			text-align: center;
+		}*/
+		
+		body {
+			font-family: Monospace;
+			background-color: #000;
+			color: #fff;
+			margin: 0px;
+			overflow: hidden;
+		}
+		
+		#info {
+			color: #fff;
+			position: absolute;
+			top: 10px;
+			width: 100%;
+			text-align: center;
+			z-index: 100;
+			display: block;
+		}
+		
+		#info a,
+		.button {
+			color: #f00;
+			font-weight: bold;
+			text-decoration: underline;
+			cursor: pointer
+		}
+	</style>
+
+	<script src="./webview.js">
+	</script>
+</head>
+
+<body>
+
+	<div id="info">
+		<a href="http://threejs.org" target="_blank">three.js</a> - OBJLoader + MTLLoader
+	</div>
+
+	<script src="js/libs/three.js"></script>
+
+	<script src="js/loaders/DDSLoader.js"></script>
+	<script src="js/loaders/MTLLoader.js"></script>
+	<script src="js/loaders/OBJLoader.js"></script>
+
+	<script src="js/Detector.js"></script>
+	<script src="js/libs/stats.min.js"></script>
+
+	<script>
+		var container, stats;
+
+			var camera, scene, renderer;
+
+			var mouseX = 0, mouseY = 0;
+
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+			console.log('init() and animate()');
+			// init();
+			// animate();
+	</script>
+
+
+
+
+
+	<!--<div class='center'>
+		<div>
+			<img src="file:///Users/guanxu/Documents/GitHub/GameEngine/Egret/gtlab-wing-extensions/wing-3dviewer/web/images/icon.png" alt="">
+			<h1>This is a webview page</h1>
+			<input type="button" value="ShowAlert" onclick="showAlert();" />
+			<input type="button" value="OpenDevTools" onclick="openDevTools();" />
+			<input type="button" value="NodeApiTest" onclick="nodeApiTest();" />
+			<input type="button" value="SendToExtension" onclick="sendToExtension();" />
+			<input type="button" value="CloseWebView" onclick="closeWebView();" />
+		</div>
+	</div>-->
+</body>
+
+</html>
