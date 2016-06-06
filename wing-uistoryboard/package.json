@@ -1,0 +1,46 @@
+{
+  "name": "wing-uistoryboard",
+  "displayName": "UI Storyboard",
+  "description": "UI Storyboard",
+  "version": "1.0.0",
+  "publisher": "gtlab",
+  "engines": {
+    "wing": "^3.0.6"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "images/icon.svg",
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/egret-labs/wing-extensions.git"
+	},
+  "license": "MIT",
+  "activationEvents": [
+    "onCommand:extension.newUiStoryboard",
+    "onCommand:extension.showWebViewPopup"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.newUiStoryboard",
+        "title": "New UI Storyboard"
+      },
+      {
+        "command": "extension.showWebViewPopup",
+        "title": "Show WebViewPopup"
+      }
+    ]
+  },
+  "scripts": {
+    "wing:prepublish": "node ./node_modules/egretwing/bin/compile",
+    "compile": "node ./node_modules/egretwing/bin/compile -watch -p ./src",
+    "compileweb": "node ./node_modules/egretwing/bin/compile -watch -p ./web",
+    "postinstall": "node ./node_modules/egretwing/bin/install"
+  },
+  "devDependencies": {
+    "egretwing": "^3.0.4",
+    "typescript": "^1.7.5"
+  }
+}
