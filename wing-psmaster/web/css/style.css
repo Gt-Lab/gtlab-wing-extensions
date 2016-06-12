@@ -1,0 +1,33 @@
+.gt-body .gt-panel .gt-heading .gt-button {
+  background-color: transparent; }
+  .gt-body .gt-panel .gt-heading .gt-button:hover {
+    background-color: #1681b4 !important; }
+  .gt-body .gt-panel .gt-heading .gt-button.gt-button1 {
+    left: calc(100% - 84px); }
+  .gt-body .gt-panel .gt-heading .gt-button.gt-button2 {
+    left: calc(100% - 42px); }
+.gt-body .gt-panel .gt-heading .gt-checkbox {
+  position: absolute;
+  right: 10px;
+  top: 0; }
+.gt-body .gt-panel > .content {
+  height: calc(100% - 42px); }
+.gt-body #gt-split-right .gt-app-bar .gt-size-input {
+  width: 50px; }
+.gt-body #gt-split-right #gt-image-view {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 50px);
+  background-color: gray;
+  perspective: 1000px; }
+  .gt-body #gt-split-right #gt-image-view .gt-image {
+    position: absolute; }
+    .gt-body #gt-split-right #gt-image-view .gt-image.gt-image1 {
+      z-index: 3; }
+    .gt-body #gt-split-right #gt-image-view .gt-image.gt-image2 {
+      z-index: 2; }
+    .gt-body #gt-split-right #gt-image-view .gt-image.gt-image3 {
+      z-index: 1;
+      transform: rotateX(45deg) rotateZ(45deg); }
+
+/*# sourceMappingURL=style.css.map */

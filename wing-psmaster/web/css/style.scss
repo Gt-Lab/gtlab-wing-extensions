@@ -1,0 +1,65 @@
+.gt-body {
+  .gt-panel {
+    .gt-heading {
+      .gt-button {
+        background-color: transparent;
+
+        &:hover {
+          background-color: darken(#1BA1E2, 10%) !important;
+        }
+
+        &.gt-button1 {
+          left: calc(100% - 84px);
+        }
+
+        &.gt-button2 {
+          left: calc(100% - 42px);
+        }
+      }
+
+      .gt-checkbox {
+        position: absolute;
+        right: 10px;
+        top: 0;
+      }
+    }
+
+    & > .content {
+      height: calc(100% - 42px);
+    }
+  }
+
+  #gt-split-right {
+    .gt-app-bar {
+      .gt-size-input {
+        width: 50px;
+      }
+    }
+
+    #gt-image-view {
+      position: relative;
+      width: 100%;
+      height: calc(100% - 50px);
+      background-color: gray;
+    //   overflow: hidden;
+      perspective: 1000px;
+      
+      .gt-image {
+          position: absolute;
+          
+        //   transform-origin: right center;
+          
+          &.gt-image1 {
+              z-index: 3;
+          }
+          &.gt-image2 {
+              z-index: 2;
+          }
+          &.gt-image3 {
+              z-index: 1;
+              transform: rotateX( 45deg ) rotateZ( 45deg );
+          }
+      }
+    }
+  }
+}

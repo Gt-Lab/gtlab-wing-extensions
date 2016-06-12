@@ -127,6 +127,15 @@ $(document).ready(function () {
 			}
 		})
 		;
+		
+		
+	// 如果 filePath 存在就用上一次的。
+	let filePath = localStorage.getItem('gtlab_wingNewTS_filePath');
+	if (filePath) {
+		fileInfo.filePath = filePath;
+		$('#filePath').val(filePath);
+	}
+	
 }); // ready
 
 
@@ -179,6 +188,8 @@ function doCreateFile(args: any) {
 	// fi.fullPath = `${fi.rootPath}${oi.slash}${fi.filePath}`;
 	// fi.fullName = `${fi.fullPath}${oi.slash}${fi.fileName}.ts`;
 	
+	localStorage.setItem('gtlab_wingNewTS_filePath', fi.filePath);
+
 	// fullPath 文件夹绝对路径，fullName 文件绝对路径
 	fi.fullPath = path.join(fi.rootPath, fi.filePath);
 	fi.fullName = path.join(fi.fullPath, fi.fileName + '.ts');

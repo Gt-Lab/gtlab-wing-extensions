@@ -1,0 +1,189 @@
+<html>
+
+<head>
+	<style>
+		/*.monaca-shell {
+			margin: 8px;
+		}
+		
+		.center {
+			display: flex;
+			flex-flow: column;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+		}
+		
+		.center div {
+			text-align: center;
+		}*/
+	</style>
+
+	<!--wing dark style-->
+	<link rel="stylesheet" href="./lib/wing/webview.css">
+
+	<!--jquery-->
+	<script src="./lib/jquery/jquery.min.js"></script>
+
+	<!--metro-->
+	<link href="./lib/metro/metro.css" rel="stylesheet">
+	<link href="./lib/metro/metro-icons.css" rel="stylesheet">
+	<script src="./lib/metro/metro.js"></script>
+
+	<!--split-->
+	<link href="./lib/split/split.css" rel="stylesheet">
+	<script src="./lib/split/split.js"></script>
+
+	<!--ruler-->
+	<!--<link href="./lib/ruler/ruler.css" rel="stylesheet">
+	<script src="./lib/modernizr/modernizr-2.6.2.min.js"></script>
+	<script src="./lib/ruler/jquery.ruler.js"></script>-->
+
+
+
+	<link href="./css/style.css" rel="stylesheet">
+
+</head>
+
+<!--<body>-->
+
+<body class="monaco-shell vs-dark gt-body">
+	<div class="split gt-split">
+
+		<div id="gt-split-left" class="split split-horizontal">
+			<div id="gt-files" class="split content">
+				
+				<div class="panel gt-panel">
+					<div class="heading gt-heading">
+						<span class="icon mif-files-empty" data-role="hint" data-hint="Files|Show all ps files in the folder"></span>
+						<span class="title" data-role="hint" data-hint="Files|Show all ps files in the folder">Files</span>
+						<span class="icon mif-loop gt-button gt-button1" 
+							data-role="hint" data-hint="Refresh|Refresh all ps files"></span>
+						<span class="icon mif-folder-open gt-button gt-button2" 
+							data-role="hint" data-hint="Change Folder|Change the folder to look up"></span>
+					</div>
+					<div class="content padding10">
+
+						<div class="treeview" data-role="treeview">
+							<ul>
+								<li><span class="leaf"><span class="icon mif-file-image"></span>test.psd</span>
+								</li>
+								<li><span class="leaf"><span class="icon mif-file-image"></span>test2.psd</span>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+				
+			</div>
+
+			<div id="gt-layers" class="split content">
+				
+				<div class="panel gt-panel">
+					<div class="heading gt-heading">
+						<span class="icon mif-layers"></span>
+						<span class="title">Layers</span>
+						<label class="input-control checkbox small-check gt-checkbox">
+							<input type="checkbox">
+							<span class="check"></span>
+							<span class="caption">Enable</span>
+						</label>
+					</div>
+					<div class="content padding10">
+
+
+						<div class="treeview" data-role="treeview">
+							<ul>
+								<li data-mode="checkbox" data-name="checkbox_name" data-checked="true">
+									<span class="leaf">Leaf name</span>
+								</li>
+								<li data-mode="checkbox" data-name="checkbox_name" data-checked="true" data-disabled="true">
+									<span class="leaf">Leaf name2</span>
+								</li>
+								<li><span class="leaf"><span class="icon mif-file-image"></span>Layer 1</span>
+								</li>
+								<li><span class="leaf"><span class="icon mif-file-image"></span>Background</span>
+								</li>
+							</ul>
+						</div>
+
+
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		<div id="gt-split-right" class="split split-horizontal content">
+			<!--<div id="e" class="split content"></div>
+		<div id="f" class="split content"></div>-->
+
+
+
+			<div class="app-bar gt-app-bar">
+				<!--<a class="app-bar-element">PS Master</a>-->
+				<!--<span class="app-bar-divider"></span>-->
+				
+				<ul class="app-bar-menu">
+					<li data-role="hint" data-hint="Reload|Reload the current ps file"><a>&nbsp;<span class="mif-loop2"></span>&nbsp;</a></li>
+					<span class="app-bar-divider"></span>
+					<li data-role="hint" data-hint="Zoom Out|Scale the document down"><a>&nbsp;<span class="mif-zoom-out"></span>&nbsp;</a></li>
+					<li data-role="hint" data-hint="Zoom In|Scale the document up"><a>&nbsp;<span class="mif-zoom-in"></span>&nbsp;</a></li>
+					<li data-role="hint" data-hint="Zoom to Fit|Scale the document to fit the window size"><a>&nbsp;<span class="mif-enlarge"></span>&nbsp;</a></li>
+					<li data-role="hint" data-hint="Zoom|Current zoom value">
+						<div class="input-control text gt-size-input">
+							<input type="text" value="100%">
+						</div>
+					</li>
+
+				</ul>
+				<ul class="app-bar-menu place-right">
+					<li><a><span class="mif-folder-upload"></span> Export</a></li>
+				</ul>
+			</div>
+			
+			
+			<div id="gt-image-view">
+				<img class="gt-image gt-image1" src="./images/title.png" alt="">
+				<img class="gt-image gt-image2" src="./images/button.png" alt="">
+				<img class="gt-image gt-image3" src="./images/bg.png" alt="">
+			</div>
+
+
+
+		</div>
+	</div>
+
+
+	<!--<div class="gt-main">
+		<div id="a" class="split split-horizontal">
+			<div id="c" class="split content"></div>
+			<div id="d" class="split content"></div>
+		</div>
+		<div id="b" class="split split-horizontal">
+			<div id="e" class="split content"></div>
+			<div id="f" class="split content"></div>
+		</div>
+	</div>-->
+
+
+
+	<!--page logic-->
+	<script src="./webview.js"></script>
+
+
+	<!--<div class='center'>
+		<div>
+			<h1>This is a webview page</h1>
+			<input type="button" value="ShowAlert" onclick="showAlert();" />
+			<input type="button" value="OpenDevTools" onclick="openDevTools();" />
+			<input type="button" value="NodeApiTest" onclick="nodeApiTest();" />
+			<input type="button" value="SendToExtension" onclick="sendToExtension();" />
+			<input type="button" value="CloseWebView" onclick="closeWebView();" />
+		</div>
+	</div>-->
+</body>
+
+</html>

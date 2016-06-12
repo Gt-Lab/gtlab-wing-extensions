@@ -1,11 +1,11 @@
 {
-  "name": "wing-newts",
-  "displayName": "New TypeScript File",
-  "description": "New TypeScript File",
-  "version": "1.0.1",
+  "name": "wing-psmaster",
+  "displayName": "PS Master",
+  "description": "PS Master",
+  "version": "1.0.0",
   "publisher": "gtlab",
   "engines": {
-    "wing": "^3.0.7"
+    "wing": "^3.0.6"
   },
   "categories": [
     "Other"
@@ -13,18 +13,25 @@
   "icon": "images/icon.svg",
   "repository": {
 		"type": "git",
-		"url": "https://github.com/Gt-Lab/gtlab-wing-extensions"
+		"url": "https://github.com/egret-labs/wing-extensions.git"
 	},
   "license": "MIT",
   "activationEvents": [
-    "onCommand:extension.showNewTsClassPopup"
+    "onCommand:extension.gtlab.wingPsMaster.show"
   ],
   "main": "./out/extension",
   "contributes": {
+    "languages": [{
+			"id": "ps",
+			"extensions": [ ".psd", ".pdb" ],
+			"aliases": [ "PSD", "PSB" ],
+			"mimetypes": ["text/x-photoshop"]
+		}]
+    ,
     "commands": [
       {
-        "command": "extension.showNewTsClassPopup",
-        "title": "New TypeScript File"
+        "command": "extension.gtlab.wingPsMaster.show",
+        "title": "PS Master"
       }
     ]
   },

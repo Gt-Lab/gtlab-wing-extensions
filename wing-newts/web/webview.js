@@ -103,6 +103,12 @@ $(document).ready(function () {
             },
         }
     });
+    // 如果 filePath 存在就用上一次的。
+    var filePath = localStorage.getItem('gtlab_wingNewTS_filePath');
+    if (filePath) {
+        fileInfo.filePath = filePath;
+        $('#filePath').val(filePath);
+    }
 }); // ready
 // wing.webview.ipc.sendToHost('openDevTools');
 // test 
@@ -139,6 +145,7 @@ function doCreateFile(args) {
     // todo 如果路径是windows的斜杠、路径两边有斜杠，要处理 ---- path.join() 可以自动处理
     // fi.fullPath = `${fi.rootPath}${oi.slash}${fi.filePath}`;
     // fi.fullName = `${fi.fullPath}${oi.slash}${fi.fileName}.ts`;
+    localStorage.setItem('gtlab_wingNewTS_filePath', fi.filePath);
     // fullPath 文件夹绝对路径，fullName 文件绝对路径
     fi.fullPath = path.join(fi.rootPath, fi.filePath);
     fi.fullName = path.join(fi.fullPath, fi.fileName + '.ts');
