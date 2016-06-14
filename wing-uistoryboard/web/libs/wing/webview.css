@@ -1,0 +1,56 @@
+.monaco-shell {
+  color: #6c6c6c;
+  margin: 0;
+  padding: 0;
+  font-family: Segoe WPC,Segoe UI,SFUIText-Light,HelveticaNeue-Light,Microsoft Yahei,sans-serif;
+  font-size: 11px;
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsla(0,0%,47%,.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsla(0,0%,39%,.7);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: rgba(85,85,85,.8);
+}
+
+.monaco-shell.vs-dark {
+  color: #bbb;
+  background-color: #252526;
+}
+
+.monaco-shell.hc-black {
+  color: #fff;
+  background-color: #000;
+}
+
+.monaco-shell.wing-dark.vs-dark {
+  color: #ccc;
+  background-color: #1b1b29;
+}
+
+.popup-container {
+  background-color: #f6f6f6;
+  box-shadow: 0 2px 8px #a8a8a8;
+}
+
+.vs-dark.popup-container {
+  background-color: #252526;
+  box-shadow: 0 2px 8px #000;
+}
+
+.hc-black.popup-container {
+  border: 2px solid #6fc3df;
+  background-color: #0c141f;
+  color: #fff;
+  box-shadow: none;
+}

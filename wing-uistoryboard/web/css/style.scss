@@ -1,0 +1,23 @@
+body {
+  font-family: "Segoe UI", "Open Sans", sans-serif, serif !important;
+  font-size: .875rem !important;
+  line-height: 1.1 !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+
+#gt-main {
+  height: 100%;
+
+  #gt-menu {
+    background-color: white;
+    min-width: 500px;
+  }
+  
+  #gt-content {
+    //   position: absolute;
+    //   width: 600px;
+    //   height: 400px;
+      height: calc(100% - 150px);
+  }
+}

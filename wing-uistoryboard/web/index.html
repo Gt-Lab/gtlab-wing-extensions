@@ -1,59 +1,204 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Egret</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="full-screen" content="true"/>
-    <meta name="screen-orientation" content="portrait"/>
-    <meta name="x5-fullscreen" content="true"/>
-    <meta name="360-fullscreen" content="true"/>
-    <style>
-        html, body {
-            -ms-touch-action: none;
-            background: transparent;
-            padding: 0;
-            border: 0;
-            margin: 0;
-            height: 100%;
-        }
-    </style>
+    <script src="./libs/jquery/jquery.min.js"></script>
 
-    <!--这个标签为通过egret提供的第三方库的方式生成的 javascript 文件。删除 modules_files 标签后，库文件加载列表将不会变化，请谨慎操作！-->
-    <!--modules_files_start-->
-	<script egret="lib" src="libs/modules/egret/egret.js" src-release="libs/modules/egret/egret.min.js"></script>
-	<script egret="lib" src="libs/modules/egret/egret.web.js" src-release="libs/modules/egret/egret.web.min.js"></script>
-	<script egret="lib" src="libs/modules/eui/eui.js" src-release="libs/modules/eui/eui.min.js"></script>
-	<!--modules_files_end-->
+    <link href="./libs/metro/metro.css" rel="stylesheet">
+    <link href="./libs/metro/metro-icons.css" rel="stylesheet">
+    <!--<link href="./libs/metro/metro-responsive.css" rel="stylesheet">-->
+    <!--<link href="./libs/metro/metro-schemes.css" rel="stylesheet">-->
+    <!--<link href="./libs/metro/docs.css" rel="stylesheet">-->
+    <script src="./libs/jquery/jquery.min.js"></script>
+    <script src="./libs/metro/metro.js"></script>
 
-    <!--这个标签为不通过egret提供的第三方库的方式使用的 javascript 文件，请将这些文件放在libs下，但不要放在modules下面。-->
-    <!--other_libs_files_start-->
-    <!--other_libs_files_end-->
+    <!--split-->
+	<link href="./libs/split/split.css" rel="stylesheet">
+	<script src="./libs/split/split.js"></script>
 
-    <!--这个标签会被替换为项目中所有的 javascript 文件。删除 game_files 标签后，项目文件加载列表将不会变化，请谨慎操作！-->
-    <!--game_files_start-->
-	<script egret="game" src="Main.js"></script>
+
+    <!--wing dark style-->
+    <link rel="stylesheet" href="./libs/wing/webview.css">
     
-    <script src="webview.js"></script>
-	<!--game_files_end-->
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./webview.js"></script>
+    
 </head>
 <body>
+<body class="monaco-shell vs-dark">
 
-    <div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
-         data-entry-class="Main"
-         data-orientation="auto"
-         data-scale-mode="showAll"
-         data-frame-rate="30"
-         data-content-width="960"
-         data-content-height="960"
-         data-show-paint-rect="false"
-         data-multi-fingered="2"
-         data-show-fps="false" data-show-log="true"
-         data-log-filter="" data-show-fps-style="x:0,y:0,size:30,textColor:0x00c200,bgAlpha:0.9">
+    <div id="gt-main">
+
+        <div id="gt-menu">
+            <div class="fluent-menu" data-role="fluentmenu" data-on-special-click="specialClick">
+                <ul class="tabs-holder">
+                    <li class="special"><a href="#">File</a></li>
+                    <li class="active"><a href="#tab_home">Home</a></li>
+                    <li class="active"><a href="#tab_mailings">Mailing</a></li>
+                    <li><a href="#tab_folder">Folder</a></li>
+                    <li><a href="#tab_view">View</a></li>
+                </ul>
+
+                <div class="tabs-content">
+                    <div class="tab-panel" id="tab_home">
+                        <div class="tab-panel-group">
+                            <div class="tab-group-content">
+                                <button class="fluent-big-button">
+                                    <span class="icon mif-envelop"></span>
+                                    Create<br />message
+                                </button>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-big-button dropdown-toggle">
+                                        <span class="icon mif-file-picture"></span>
+                                        <span class="label">Create<br />element</span>
+                                    </button>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="#">Message</a></li>
+                                        <li><a href="#">Event</a></li>
+                                        <li><a href="#">Meeting</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-big-button">
+                                        <span class="mif-cancel"></span>
+                                        <span class="label">Delete</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="tab-group-caption">Clipboard</div>
+                        </div>
+                        <div class="tab-panel-group">
+                            <div class="tab-group-content">
+                                <div class="tab-content-segment">
+                                    <button class="fluent-button"><span class="mif-loop"></span>Replay</button>
+                                    <button class="fluent-button"><span class="mif-infinite"></span>Replay all</button>
+                                    <button class="fluent-button"><span class="mif-loop2"></span>Forward</button>
+                                </div>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-tool-button"><img src="images/Notebook-Save.png"></button>
+                                    <button class="fluent-tool-button"><img src="images/Folder-Rename.png"></button>
+                                    <button class="fluent-tool-button"><img src="images/Calendar-Next.png"></button>
+                                </div>
+                            </div>
+                            <div class="tab-group-caption">Reply</div>
+                        </div>
+                        <div class="tab-panel-group">
+                            <div class="tab-group-content">
+                                <div class="input-control text">
+                                    <input type="text">
+                                    <button class="button"><span class="mif-search"></span></button>
+                                </div>
+                                <button class="fluent-button"><span class="icon-book on-left"></span>Address Book</button>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-button dropdown-toggle">
+                                        <span class="mif-filter on-left"></span>
+                                        <span class="label">Mail Filters</span>
+                                    </button>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="#">Unread messages</a></li>
+                                        <li><a href="#">Has attachments</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Important</a></li>
+                                        <li><a href="#">Broken</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-group-caption">Search</div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="tab_mailings">
+                        <div class="tab-panel-group">
+                            <div class="tab-group-content">
+                                <button class="fluent-big-button">
+                                    <span class="icon mif-envelop"></span>
+                                    Create<br />message
+                                </button>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-big-button dropdown-toggle">
+                                        <span class="icon mif-file-picture"></span>
+                                        <span class="label">Create<br />element</span>
+                                    </button>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="#">Message</a></li>
+                                        <li><a href="#">Event</a></li>
+                                        <li><a href="#">Meeting</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-big-button">
+                                        <span class="mif-cancel"></span>
+                                        <span class="label">Delete</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="tab-group-caption">Clipboard</div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="tab_folder">
+                        <div class="tab-panel-group">
+                            <div class="tab-group-content">
+                                <div class="tab-content-segment">
+                                    <button class="fluent-button"><span class="mif-loop"></span>Replay</button>
+                                    <button class="fluent-button"><span class="mif-infinite"></span>Replay all</button>
+                                    <button class="fluent-button"><span class="mif-loop2"></span>Forward</button>
+                                </div>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-tool-button"><img src="images/Notebook-Save.png"></button>
+                                    <button class="fluent-tool-button"><img src="images/Folder-Rename.png"></button>
+                                    <button class="fluent-tool-button"><img src="images/Calendar-Next.png"></button>
+                                </div>
+                            </div>
+                            <div class="tab-group-caption">Reply</div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="tab_view">
+                        <div class="tab-panel-group">
+                            <div class="tab-group-content">
+                                <button class="fluent-big-button">
+                                    <span class="icon mif-envelop"></span>
+                                    Create<br />message
+                                </button>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-big-button dropdown-toggle">
+                                        <span class="icon mif-file-picture"></span>
+                                        <span class="label">Create<br />element</span>
+                                    </button>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="#">Message</a></li>
+                                        <li><a href="#">Event</a></li>
+                                        <li><a href="#">Meeting</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content-segment">
+                                    <button class="fluent-big-button">
+                                        <span class="mif-cancel"></span>
+                                        <span class="label">Delete</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="tab-group-caption">Clipboard</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of example -->
+
+        <div id="gt-content" class="">
+            <div id="gt-list" class="split split-horizontal">list</div>
+            <div id="gt-canvas" class="split split-horizontal">canvas</div>
+            <div id="gt-properties" class="split split-horizontal">properties</div>
+        </div>
+
+
     </div>
-    <script>
-        egret.runEgret({renderMode:"canvas"});
-    </script>
+
 </body>
+
 </html>

@@ -1,12 +1,27 @@
 "use strict";
-var path = require('path');
-function init() {
-    openDevTools();
-    // var button = new eui.Button();
-    // button.skinName = "resource/skins/ButtonSkin.exml";
-    // this.addChild(button);
+$(document).ready(function () {
+    console.log('ready');
+    initSplit();
+    // initRuler();
+});
+function initSplit() {
+    Split(['#gt-list', '#gt-canvas', '#gt-properties'], {
+        sizes: [20, 60, 20],
+        minSize: 50,
+        gutterSize: 8,
+        cursor: 'col-resize'
+    });
+    // Split(['#gt-list', '#gt-canvas', '#gt-properties'], {
+    // 	minSize: [50, 200, 50]
+    // });
+    // Split(['#gt-files', '#gt-layers'], {
+    // 	direction: 'vertical',
+    // 	sizes: [50, 50],
+    // 	gutterSize: 8,
+    // 	cursor: 'row-resize'
+    // })
 }
-init();
+var path = require('path');
 function showAlert() {
     alert('Hello WebView');
 }
