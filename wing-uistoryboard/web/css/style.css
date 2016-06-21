@@ -12,5 +12,12 @@ body {
     min-width: 500px; }
   #gt-main #gt-content {
     height: calc(100% - 150px); }
+    #gt-main #gt-content #gt-list {
+      padding-left: 10px;
+      background-color: white; }
+    #gt-main #gt-content #gt-canvas {
+      background-color: gray; }
+    #gt-main #gt-content #gt-properties {
+      background-color: gray; }
 
 /*# sourceMappingURL=style.css.map */

@@ -19,5 +19,18 @@ body {
     //   width: 600px;
     //   height: 400px;
       height: calc(100% - 150px);
+
+      #gt-list {
+        padding-left: 10px;
+        background-color: white;
+      }
+
+      #gt-canvas {
+        background-color: gray;
+      }
+
+      #gt-properties {
+        background-color: gray;
+      }
   }
 }

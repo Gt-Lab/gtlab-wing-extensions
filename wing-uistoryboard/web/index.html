@@ -13,192 +13,226 @@
     <script src="./libs/metro/metro.js"></script>
 
     <!--split-->
-	<link href="./libs/split/split.css" rel="stylesheet">
-	<script src="./libs/split/split.js"></script>
+    <link href="./libs/split/split.css" rel="stylesheet">
+    <script src="./libs/split/split.js"></script>
 
 
     <!--wing dark style-->
     <link rel="stylesheet" href="./libs/wing/webview.css">
-    
+
     <link rel="stylesheet" href="./css/style.css">
     <script src="./webview.js"></script>
-    
+
 </head>
+
 <body>
-<body class="monaco-shell vs-dark">
 
-    <div id="gt-main">
+    <body class="monaco-shell vs-dark">
 
-        <div id="gt-menu">
-            <div class="fluent-menu" data-role="fluentmenu" data-on-special-click="specialClick">
-                <ul class="tabs-holder">
-                    <li class="special"><a href="#">File</a></li>
-                    <li class="active"><a href="#tab_home">Home</a></li>
-                    <li class="active"><a href="#tab_mailings">Mailing</a></li>
-                    <li><a href="#tab_folder">Folder</a></li>
-                    <li><a href="#tab_view">View</a></li>
-                </ul>
+        <div id="gt-main">
 
-                <div class="tabs-content">
-                    <div class="tab-panel" id="tab_home">
-                        <div class="tab-panel-group">
-                            <div class="tab-group-content">
-                                <button class="fluent-big-button">
+            <!--menu-->
+            <div id="gt-menu">
+                <div class="fluent-menu" data-role="fluentmenu" data-on-special-click="specialClick">
+                    <ul class="tabs-holder">
+                        <li class="special"><a href="#">File</a></li>
+                        <li class="active"><a href="#tab_home">Home</a></li>
+                        <li class="active"><a href="#tab_mailings">Mailing</a></li>
+                        <li><a href="#tab_folder">Folder</a></li>
+                        <li><a href="#tab_view">View</a></li>
+                    </ul>
+
+                    <div class="tabs-content">
+                        <div class="tab-panel" id="tab_home">
+                            <div class="tab-panel-group">
+                                <div class="tab-group-content">
+                                    <button class="fluent-big-button">
                                     <span class="icon mif-envelop"></span>
                                     Create<br />message
                                 </button>
-                                <div class="tab-content-segment">
-                                    <button class="fluent-big-button dropdown-toggle">
+                                    <div class="tab-content-segment">
+                                        <button class="fluent-big-button dropdown-toggle">
                                         <span class="icon mif-file-picture"></span>
                                         <span class="label">Create<br />element</span>
                                     </button>
-                                    <ul class="d-menu" data-role="dropdown">
-                                        <li><a href="#">Message</a></li>
-                                        <li><a href="#">Event</a></li>
-                                        <li><a href="#">Meeting</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                    </ul>
-                                </div>
-                                <div class="tab-content-segment">
-                                    <button class="fluent-big-button">
+                                        <ul class="d-menu" data-role="dropdown">
+                                            <li><a href="#">Message</a></li>
+                                            <li><a href="#">Event</a></li>
+                                            <li><a href="#">Meeting</a></li>
+                                            <li><a href="#">Contact</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content-segment">
+                                        <button class="fluent-big-button">
                                         <span class="mif-cancel"></span>
                                         <span class="label">Delete</span>
                                     </button>
+                                    </div>
                                 </div>
+                                <div class="tab-group-caption">Clipboard</div>
                             </div>
-                            <div class="tab-group-caption">Clipboard</div>
-                        </div>
-                        <div class="tab-panel-group">
-                            <div class="tab-group-content">
-                                <div class="tab-content-segment">
-                                    <button class="fluent-button"><span class="mif-loop"></span>Replay</button>
-                                    <button class="fluent-button"><span class="mif-infinite"></span>Replay all</button>
-                                    <button class="fluent-button"><span class="mif-loop2"></span>Forward</button>
+                            <div class="tab-panel-group">
+                                <div class="tab-group-content">
+                                    <div class="tab-content-segment">
+                                        <button class="fluent-button"><span class="mif-loop"></span>Replay</button>
+                                        <button class="fluent-button"><span class="mif-infinite"></span>Replay all</button>
+                                        <button class="fluent-button"><span class="mif-loop2"></span>Forward</button>
+                                    </div>
+                                    <div class="tab-content-segment">
+                                        <button class="fluent-tool-button"><img src="images/Notebook-Save.png"></button>
+                                        <button class="fluent-tool-button"><img src="images/Folder-Rename.png"></button>
+                                        <button class="fluent-tool-button"><img src="images/Calendar-Next.png"></button>
+                                    </div>
                                 </div>
-                                <div class="tab-content-segment">
-                                    <button class="fluent-tool-button"><img src="images/Notebook-Save.png"></button>
-                                    <button class="fluent-tool-button"><img src="images/Folder-Rename.png"></button>
-                                    <button class="fluent-tool-button"><img src="images/Calendar-Next.png"></button>
-                                </div>
+                                <div class="tab-group-caption">Reply</div>
                             </div>
-                            <div class="tab-group-caption">Reply</div>
-                        </div>
-                        <div class="tab-panel-group">
-                            <div class="tab-group-content">
-                                <div class="input-control text">
-                                    <input type="text">
-                                    <button class="button"><span class="mif-search"></span></button>
-                                </div>
-                                <button class="fluent-button"><span class="icon-book on-left"></span>Address Book</button>
-                                <div class="tab-content-segment">
-                                    <button class="fluent-button dropdown-toggle">
+                            <div class="tab-panel-group">
+                                <div class="tab-group-content">
+                                    <div class="input-control text">
+                                        <input type="text">
+                                        <button class="button"><span class="mif-search"></span></button>
+                                    </div>
+                                    <button class="fluent-button"><span class="icon-book on-left"></span>Address Book</button>
+                                    <div class="tab-content-segment">
+                                        <button class="fluent-button dropdown-toggle">
                                         <span class="mif-filter on-left"></span>
                                         <span class="label">Mail Filters</span>
                                     </button>
-                                    <ul class="d-menu" data-role="dropdown">
-                                        <li><a href="#">Unread messages</a></li>
-                                        <li><a href="#">Has attachments</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Important</a></li>
-                                        <li><a href="#">Broken</a></li>
-                                    </ul>
+                                        <ul class="d-menu" data-role="dropdown">
+                                            <li><a href="#">Unread messages</a></li>
+                                            <li><a href="#">Has attachments</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Important</a></li>
+                                            <li><a href="#">Broken</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
+                                <div class="tab-group-caption">Search</div>
                             </div>
-                            <div class="tab-group-caption">Search</div>
                         </div>
-                    </div>
 
-                    <div class="tab-panel" id="tab_mailings">
-                        <div class="tab-panel-group">
-                            <div class="tab-group-content">
-                                <button class="fluent-big-button">
+                        <div class="tab-panel" id="tab_mailings">
+                            <div class="tab-panel-group">
+                                <div class="tab-group-content">
+                                    <button class="fluent-big-button">
                                     <span class="icon mif-envelop"></span>
                                     Create<br />message
                                 </button>
-                                <div class="tab-content-segment">
-                                    <button class="fluent-big-button dropdown-toggle">
+                                    <div class="tab-content-segment">
+                                        <button class="fluent-big-button dropdown-toggle">
                                         <span class="icon mif-file-picture"></span>
                                         <span class="label">Create<br />element</span>
                                     </button>
-                                    <ul class="d-menu" data-role="dropdown">
-                                        <li><a href="#">Message</a></li>
-                                        <li><a href="#">Event</a></li>
-                                        <li><a href="#">Meeting</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                    </ul>
-                                </div>
-                                <div class="tab-content-segment">
-                                    <button class="fluent-big-button">
+                                        <ul class="d-menu" data-role="dropdown">
+                                            <li><a href="#">Message</a></li>
+                                            <li><a href="#">Event</a></li>
+                                            <li><a href="#">Meeting</a></li>
+                                            <li><a href="#">Contact</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content-segment">
+                                        <button class="fluent-big-button">
                                         <span class="mif-cancel"></span>
                                         <span class="label">Delete</span>
                                     </button>
+                                    </div>
                                 </div>
+                                <div class="tab-group-caption">Clipboard</div>
                             </div>
-                            <div class="tab-group-caption">Clipboard</div>
                         </div>
-                    </div>
 
-                    <div class="tab-panel" id="tab_folder">
-                        <div class="tab-panel-group">
-                            <div class="tab-group-content">
-                                <div class="tab-content-segment">
-                                    <button class="fluent-button"><span class="mif-loop"></span>Replay</button>
-                                    <button class="fluent-button"><span class="mif-infinite"></span>Replay all</button>
-                                    <button class="fluent-button"><span class="mif-loop2"></span>Forward</button>
+                        <div class="tab-panel" id="tab_folder">
+                            <div class="tab-panel-group">
+                                <div class="tab-group-content">
+                                    <div class="tab-content-segment">
+                                        <button class="fluent-button"><span class="mif-loop"></span>Replay</button>
+                                        <button class="fluent-button"><span class="mif-infinite"></span>Replay all</button>
+                                        <button class="fluent-button"><span class="mif-loop2"></span>Forward</button>
+                                    </div>
+                                    <div class="tab-content-segment">
+                                        <button class="fluent-tool-button"><img src="images/Notebook-Save.png"></button>
+                                        <button class="fluent-tool-button"><img src="images/Folder-Rename.png"></button>
+                                        <button class="fluent-tool-button"><img src="images/Calendar-Next.png"></button>
+                                    </div>
                                 </div>
-                                <div class="tab-content-segment">
-                                    <button class="fluent-tool-button"><img src="images/Notebook-Save.png"></button>
-                                    <button class="fluent-tool-button"><img src="images/Folder-Rename.png"></button>
-                                    <button class="fluent-tool-button"><img src="images/Calendar-Next.png"></button>
-                                </div>
+                                <div class="tab-group-caption">Reply</div>
                             </div>
-                            <div class="tab-group-caption">Reply</div>
                         </div>
-                    </div>
 
-                    <div class="tab-panel" id="tab_view">
-                        <div class="tab-panel-group">
-                            <div class="tab-group-content">
-                                <button class="fluent-big-button">
+                        <div class="tab-panel" id="tab_view">
+                            <div class="tab-panel-group">
+                                <div class="tab-group-content">
+                                    <button class="fluent-big-button">
                                     <span class="icon mif-envelop"></span>
                                     Create<br />message
                                 </button>
-                                <div class="tab-content-segment">
-                                    <button class="fluent-big-button dropdown-toggle">
+                                    <div class="tab-content-segment">
+                                        <button class="fluent-big-button dropdown-toggle">
                                         <span class="icon mif-file-picture"></span>
                                         <span class="label">Create<br />element</span>
                                     </button>
-                                    <ul class="d-menu" data-role="dropdown">
-                                        <li><a href="#">Message</a></li>
-                                        <li><a href="#">Event</a></li>
-                                        <li><a href="#">Meeting</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                    </ul>
-                                </div>
-                                <div class="tab-content-segment">
-                                    <button class="fluent-big-button">
+                                        <ul class="d-menu" data-role="dropdown">
+                                            <li><a href="#">Message</a></li>
+                                            <li><a href="#">Event</a></li>
+                                            <li><a href="#">Meeting</a></li>
+                                            <li><a href="#">Contact</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content-segment">
+                                        <button class="fluent-big-button">
                                         <span class="mif-cancel"></span>
                                         <span class="label">Delete</span>
                                     </button>
+                                    </div>
                                 </div>
+                                <div class="tab-group-caption">Clipboard</div>
                             </div>
-                            <div class="tab-group-caption">Clipboard</div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- End of menu -->
+
+            <!--content-->
+            <div id="gt-content" class="">
+
+                <!--list-->
+                <div id="gt-list" class="split split-horizontal">
+                    <div class="treeview" data-role="treeview">
+                        <ul>
+                            <li class="node active">
+                                <span class="leaf"><span class="mif-tree"></span> Network</span>
+                                <span class="node-toggle"></span>
+                                <ul>
+                                    <li><span class="leaf"><span class="icon mif-tablet"></span> ASUS</span>
+                                    </li>
+                                    <li><span class="leaf"><span class="icon mif-laptop"></span> BARACUDA</span>
+                                    </li>
+                                    <li><span class="leaf"><span class="icon mif-printer"></span> EPSON</span>
+                                    </li>
+                                    <li><span class="leaf"><span class="icon mif-database"></span> VUSOLO</span>
+                                    </li>
+                                    <li><span class="leaf"><span class="icon mif-phone"></span> GALAXY S4</span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!--canvas-->
+                <div id="gt-canvas" class="split split-horizontal">
+                    <iframe src="http://edn.egret.com/cn/example/page/examples/1/010-disp-basic/bin-release/web/001/index.html" frameborder="0"></iframe>
+                </div>
+
+                <!--properties-->
+                <div id="gt-properties" class="split split-horizontal">properties</div>
+            </div>
+
+
         </div>
-        <!-- End of example -->
 
-        <div id="gt-content" class="">
-            <div id="gt-list" class="split split-horizontal">list</div>
-            <div id="gt-canvas" class="split split-horizontal">canvas</div>
-            <div id="gt-properties" class="split split-horizontal">properties</div>
-        </div>
-
-
-    </div>
-
-</body>
+    </body>
 
 </html>
